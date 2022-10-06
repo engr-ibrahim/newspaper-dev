@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Backend\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +22,23 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/*Backend Routes */
+Route::prefix('admin')->middleware(['auth'])->group(function(){
+
+    // Dashboard
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+    // Profile Management Routes
+    Route::get('update-profile', [ProfileController::class, 'getUpdateProfile'])->name('getupdate.profile');
+    Route::post('update-profile', [ProfileController::class, 'updateProfile'])->name('postupdate.profile');
+
+    Route::get('update-password', [ProfileController::class, 'getUpdatePassword'])->name('getupdate.password');
+    Route::post('update-password', [ProfileController::class, 'updatePassword'])->name('postupdate.password');
+
+
+
+
+});
+

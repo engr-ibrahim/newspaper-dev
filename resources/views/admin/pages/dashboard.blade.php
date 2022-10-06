@@ -1,5 +1,6 @@
 @extends('admin.layouts.master')
 @section('page_title', 'Admin Dashboard')
+@section('page_heading', 'Welcome to Admin Dashboard')
 
 @push('admin_style')
 
@@ -7,7 +8,6 @@
 
 
 @section('admin_content')
-    <h1>Welcome to Admin Dashboard</h1>
 
 @endsection
 
